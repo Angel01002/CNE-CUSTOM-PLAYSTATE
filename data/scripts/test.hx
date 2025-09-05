@@ -1,6 +1,8 @@
             import flixel.util.FlxTimeEventManager;
             import flixel.util.FlxTimeEvent;
             
+            final FlxStepEvent:FlxTimeEventManager = new FlxTimeEventManager();
+            final FlxBeatEvent:FlxTimeEventManager = new FlxTimeEventManager();
             var player:Character;
             var point:FlxPoint;
             var speed:Float;
@@ -49,6 +51,16 @@
                         FlxTimeEvent.globalManager.timeLimit = Conductor.crochet/ 4;
                     });
                 }
+            }
+            
+            function stepHit(step:Int):Void
+            {
+                FlxStepTime.timeUpdate(step);
+            }
+            
+            function beatHit(beat:Int):Void
+            {
+                FlxBeatTime.timeUpdate(beat);
             }
             
             function update(elapsed:Float):Void
