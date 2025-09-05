@@ -43,7 +43,7 @@
                 }
                 else
                 {
-                                       FlxTimeEvent.globalManager.timeLimit = Conductor.crochet / 4; FlxTimeEvent.globalManager.start(-Conductor.crochet * 10);
+FlxTimeEvent.globalManager.timeLimit = Conductor.crochet / 4; FlxTimeEvent.globalManager.start(-Conductor.crochet * 10);
                 }
             }
             
