@@ -7,8 +7,8 @@
         <anim key="I" anim="BG I0" x="0" y="0" fps="20" loop="false" indices=""/>
         <property name="origin.x" type="float" value="0"/>
         <property name="origin.y" type="float" value="0"/>
-        <script path="data/scripts/bg" key="bg:1" type="script_init">
-            <text key="bg:2" type="script_init">
+        <script path="data/scripts/bg" key="bg:1" type="create">
+            <text key="bg:2" type="create">
                 function create():Void
                 {
                     var rect:FlxRect = __sprite__.clipRect;
@@ -30,7 +30,7 @@
     
     <solid key="bgwhite" x="0" y="0" width="1" height="1" color="#0xFFFFFF" scalex="1" scaley="1" scrollx="0" scrolly="0" updateHitbox="true">
         <script>
-            <text key="bgwhite:1" type="script_init">
+            <text key="bgwhite:1" type="create">
                 function create():Void
                 {
                     __sprite__.makeGraphic(FlxG.camera.width, FlxG.camera.height, FlxColor.WHITE);
@@ -43,19 +43,19 @@
     
     <character name="player3" x="100" y="500" camxoffset="0" camyoffset="0" flip="false" scrollx="1" scrolly="1" skewx="0" skewy="0">
         <script>
-            <text key="player3:1" type="script_init">
+            <text key="player3:1" type="create">
                 function create():Void
                 {
-                    this.playAnim('idle', true);
-                    this.update(0);
-                    this.updateHitbox();
+                    __player__.playAnim('idle', true);
+                    __player__.update(0);
+                    __player__.updateHitbox();
                 }
             </text>
         </script>
     </character>
     
     <script>
-        <text key="example:script:1" type="script_playstate">
+        <text key="example:script:1" type="default">
             import flixel.util.FlxTimeEventManager;
             import flixel.util.FlxTimeEvent;
             
@@ -101,8 +101,11 @@
                 }
                 else
                 {
-                    FlxTimeEvent.globalManager.timeLimit = Conductor.crochet/ 4;
+                    FlxTimeEvent.globalManager.timeLimit = Conductor.crochet / 4;
                     FlxTimeEvent.globalManager.start(-Conductor.crochet * 10);
+                    FlxTimeEvent.multiple([for (i => e in this.events) if (e.name == "BPM Change") e.time + 0.01], function(_:FlxTimeEvent):Void {
+                        FlxTimeEvent.globalManager.timeLimit = Conductor.crochet / 4;
+                    })
                 }
             }
             
