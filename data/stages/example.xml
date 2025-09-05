@@ -1,0 +1,125 @@
+<stage zoom="1" name="example" folder="images/stages/example/">
+    <sprite key="bg" x="100" y="100" scalex="2" scaley="2" scrollx="1" scrolly="1" updateHitbox="true" path="background/bg">
+        <anim key="L" anim="BG L0" x="0" y="0" fps="20" loop="false" indices=""/>
+        <anim key="D" anim="BG D0" x="0" y="0" fps="20" loop="false" indices=""/>
+        <anim key="U" anim="BG U0" x="0" y="0" fps="20" loop="false" indices=""/>
+        <anim key="R" anim="BG R0" x="0" y="0" fps="20" loop="false" indices=""/>
+        <anim key="I" anim="BG I0" x="0" y="0" fps="20" loop="false" indices=""/>
+        <property name="origin.x" type="float" value="0"/>
+        <property name="origin.y" type="float" value="0"/>
+        <script path="data/scripts/bg" key="bg:1" type="script_init">
+            <text key="bg:2" type="script_init">
+                function create():Void
+                {
+                    var rect:FlxRect = __sprite__.clipRect;
+                    if (rect == null)
+                        rect = FlxRect.get();
+                    
+                    rect.x = 0;
+                    rect.y = 0;
+                    
+                    rect.width = FlxG.width / 4;
+                    rect.height = FlxG.height / 4;
+                    
+                    __sprite__.clipRect = rect;
+                    __sprite__.centerOrigin();
+                }
+            </text>
+        </script>
+    </sprite>
+    
+    <solid key="bgwhite" x="0" y="0" width="1" height="1" color="#0xFFFFFF" scalex="1" scaley="1" scrollx="0" scrolly="0" updateHitbox="true">
+        <script>
+            <text key="bgwhite:1" type="script_init">
+                function create():Void
+                {
+                    __sprite__.makeGraphic(FlxG.camera.width, FlxG.camera.height, FlxColor.WHITE);
+                    __sprite__.updateHitbox();
+                    __sprite__.visible = false;
+                }
+            </text>
+        </script>
+    </solid>
+    
+    <character name="player3" x="100" y="500" camxoffset="0" camyoffset="0" flip="false" scrollx="1" scrolly="1" skewx="0" skewy="0">
+        <script>
+            <text key="player3:1" type="script_init">
+                function create():Void
+                {
+                    __player__.playAnim('idle', true);
+                    __player__.update(0);
+                    __player__.updateHitbox();
+                }
+            </text>
+        </script>
+    </character>
+    
+    <script>
+        <text key="example:script:1" type="script_playstate">
+            import flixel.util.FlxTimeEventManager;
+            import flixel.util.FlxTimeEvent;
+            
+            var player:Character;
+            var point:FlxPoint;
+            var speed:Float;
+            
+            function postCreate():Void
+            {
+                player = this.strumLines.members[0].characters[0];
+                point = FlxPoint.get(player.x, player.y);
+                speed = 1;
+                
+                if (FlxTimeEvent.globalManager == null)
+                    FlxTimeEvent.globalManager = new FlxTimeEventManager();
+                
+                FlxTimeEvent.globalManager.clear();
+                FlxTimeEvent.globalManager.reset();
+                
+                FlxTimeEvent.tween(10000, 5000, {
+                    ease: FlxEase.quadInOut,
+                    onUpdate: function(_:FlxTimeEvent):Void {
+                        this.stage.stageSprites['bg'].angle = (0 + (360 * _.scale));
+                    },
+                    onComplete: function(_:FlxTimeEvent):Void {
+                        this.stage.stageSprites['bg'].angle = 0;
+                    }
+                });
+                
+                FlxTimeEvent.num(20000, 30000, 360, 0, {
+                    onUpdate: function(_:FlxTimeEvent):Void {
+                        this.stage.stageSprites['bg'].angle = _.value;
+                    }
+                });
+                
+                FlxTimeEvent.once(50000, function(_:FlxTimeEvent):Void {
+                    FlxG.camera.flash(FlxColor.RED, 2.0, null, true);
+                });
+                
+                if (this.curSongLower != "tutorial")
+                {
+                    FlxTimeEvent.globalManager.active = false;
+                }
+                else
+                {
+                    FlxTimeEvent.globalManager.start();
+                }
+            }
+            
+            function update(elapsed:Float):Void
+            {
+                var sin:Float = Math.sin(Conductor.curBeatFloat) * speed;
+                player.x = point.x + sin;
+                player.y = point.y - sin;
+                FlxTimeEvent.globalManager.timeUpdate(Conductor.songPosition);
+            }
+            
+            function destroy():Void
+            {
+                point.put();
+                FlxTimeEvent.globalManager.clear();
+                FlxTimeEvent.globalManager.reset();
+                FlxTimeEvent.globalManager.pause();
+            }
+        </text>
+    </script>
+</stage>
