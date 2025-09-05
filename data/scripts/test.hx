@@ -45,6 +45,9 @@
                 {
                     FlxTimeEvent.globalManager.timeLimit = Conductor.crochet / 4;
                     FlxTimeEvent.globalManager.start(-Conductor.crochet * 10);
+                    FlxTimeEvent.multiple([for (i => e in this.events) if (e.name == "BPM Change") e.time + 0.01], function(_:FlxTimeEvent):Void {
+                        FlxTimeEvent.globalManager.timeLimit = Conductor.crochet/ 4;
+                    });
                 }
             }
             
