@@ -14,7 +14,10 @@
                 speed = 1;
                 
                 if (FlxTimeEvent.globalManager == null)
+                {
                     FlxTimeEvent.globalManager = new FlxTimeEventManager();
+                    FlxTimeEvent.globalManager.type = FlxTimeType.LINEAR;
+                }
                 
                 FlxTimeEvent.globalManager.clear();
                 FlxTimeEvent.globalManager.reset();
