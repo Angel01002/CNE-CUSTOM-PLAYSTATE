@@ -46,9 +46,9 @@
             <text key="player3:1" type="script_init">
                 function create():Void
                 {
-                    __player__.playAnim('idle', true);
-                    __player__.update(0);
-                    __player__.updateHitbox();
+                    this.playAnim('idle', true);
+                    this.update(0);
+                    this.updateHitbox();
                 }
             </text>
         </script>
