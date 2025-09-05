@@ -101,7 +101,7 @@
                 }
                 else
                 {
-                    FlxTimeEvent.globalManager.start();
+                    FlxTimeEvent.globalManager.start(-Conductor.crochet * 10);
                 }
             }
             
