@@ -123,11 +123,12 @@ function test():Void
      * @return FlxTimeTweenEvent
      */
     FlxTimeEvent.tween(100, 50, {
+        ease: FlxEase.linear,
         onStart: function(_):Void {
             trace('tween start');
         },
         onUpdate: function(_):Void {
-            trace('tween scale: ${_.scale}');
+            trace('tween scale: ${FlxEase.backInOut(_.scale)}');
         },
         onComplete: function(_):Void {
             trace('tween completed');
@@ -142,6 +143,7 @@ function test():Void
      * @param options
      */
     FlxTimeEvent.num(100, 50, 0, 100, {
+        ease: FlxEase.quadInOut,
         onStart: function(_):Void {
             trace('num start');
         },
