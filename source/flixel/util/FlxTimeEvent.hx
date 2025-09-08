@@ -6,6 +6,9 @@ class FlxTimeEvent implements IFlxDestroyable
     public static var globalManager:FlxTimeEventManager;
     
     /**
+     * ```haxe
+     * FlxTimeEvent.event(10000, (_) -> FlxG.camera.flash());
+     * ```
      * Crea y añade un TimeEvent al manager global.
      * Este evento se dispara solo una vez que llega al tiempo establecido.
      * @param time Indica el momento a disparar este evento.
@@ -18,7 +21,7 @@ class FlxTimeEvent implements IFlxDestroyable
     }
     
     /**
-     * Crea y añade un IntervalEvent al maanager global.
+     * Crea y añade un IntervalEvent al manager global.
      * Este evento se dispara cada intervalo de tiempo según el loops mandado.
      * @param start Indica el inicio y primer disparo.
      * @param inter Indica el intervalo entre cada disparo.
