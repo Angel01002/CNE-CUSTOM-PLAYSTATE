@@ -36,6 +36,22 @@ class FlxTimeEvent implements IFlxDestroyable
     {
         return globalManager.interval(start, inter, loops, callback);
     }
+    
+    /**
+     * ```haxe
+     * FlxTimeEvent.multiple([1000, 12000, 34000, 50000, 60000, 100000], (_) -> mySprite.visible = true);
+     * FlxTimeEvent.multiple([0, 5000, 25000, 40000, 55000, 80000], (_) -> mySprite.visible = false);
+     * ```
+     * Crea y añade un MultipleEvent al manager global.
+     * Este evento se dispara en cada tiempo establecido en el array.
+     * @param times Un arreglo con múltiples tiempos.
+     * @param callback Una función a disparar en cada tiempo establecido.
+     * @return MultipleEvent
+     */
+    public static function multiple(times:Array<Float>, callback:MultipleEvent->Void):MultipleEvent
+    {
+        return globalManager.multiple(times, callback);
+    }
 }
 
 
