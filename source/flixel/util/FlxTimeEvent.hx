@@ -21,6 +21,9 @@ class FlxTimeEvent implements IFlxDestroyable
     }
     
     /**
+     * ```haxe
+     * FlxTimeEvent.interval(50000, 5000, 36, (_) -> FlxG.camera.angle += 10);
+     * ```
      * Crea y añade un IntervalEvent al manager global.
      * Este evento se dispara cada intervalo de tiempo según el loops mandado.
      * @param start Indica el inicio y primer disparo.
