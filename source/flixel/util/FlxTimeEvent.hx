@@ -62,7 +62,7 @@ class FlxTimeEvent implements IFlxDestroyable
      * ```
      * Crea y añade un RangeEvent al manager global.
      * Este evento se dispara siempre que el tiempo esté dentro del rango establecido.
-     * @param start Indica el tiempo inicial.
+     * @param start Indica el tiempo de inicio.
      * @param length Indica la longitud del rango.
      * @param callback Una función a disparar mientras el evento se encuentre en el rango establecido.
      * @return RangeEvent
@@ -70,6 +70,37 @@ class FlxTimeEvent implements IFlxDestroyable
     public static function range(start:Float, length:Float, callback:RangeEvent->Void):RangeEvent
     {
         return globalManager.range(start, length, callback);
+    }
+    
+    /**
+     * ```haxe
+     * FlxTimeEvent.tween(40000, 20000, {
+     *     ease: FlxEase.linear,
+     *     onStart: (_) -> {
+     *         FlxG.camera.x = 0;
+     *         FlxG.camera.y = 0;
+     *         mySprite.angle = 0;
+     *     },
+     *     onUpdate: (_) -> {
+     *         mySprite.angle = 0 + 360 * FlxEase.backInOut(_.scale);
+     *         FlxG.camera.x = 0 + FlxG.width * _.scale;
+     *         FlxG.camera.y = 0 + FlxG.height * _.scale;
+     *     },
+     *     onComplete: (_) -> {
+     *         _.type = FlxTimeEventType.PERSIST;
+     *     }
+     * });
+     * ```
+     * Crea y añade un TweenEvent al manager global.
+     * Este evento es similar al `range()` pero sirve para crear una interpolacion en base al tiempo objetivo.
+     * @param start Indica es tiempo de inicio.
+     * @param length Indica la longitud del rango.
+     * @param options Un objeto con algunas opciones comunes de un tween.
+     * @return TweenEvent
+     */
+    public static function tween(start:Float, length:Float, options:TweenEventOptions):TweenEvent
+    {
+        return globalManager.tween(start, length, options);
     }
 }
 
