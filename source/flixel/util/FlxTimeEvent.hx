@@ -3,6 +3,9 @@ import flixel.util.FlxDestroyUtil.IFlxDestroyable;
 
 class FlxTimeEvent implements IFlxDestroyable
 {
+    /**
+     * Administrador global para `FlxTimeEvent`.
+     */
     public static var globalManager:FlxTimeEventManager;
     
     /**
@@ -51,6 +54,19 @@ class FlxTimeEvent implements IFlxDestroyable
     public static function multiple(times:Array<Float>, callback:MultipleEvent->Void):MultipleEvent
     {
         return globalManager.multiple(times, callback);
+    }
+
+    /**
+     * Crea y añade un RangeEvent al manager global.
+     * Este evento se dispara siempre que el tiempo esté dentro del rango establecido.
+     * @param start Indica el tiempo inicial.
+     * @param length Indica la longitud del rango.
+     * @param callback Una función a disparar mientras el evento se encuentre en el rango establecido.
+     * @return RangeEvent
+     */
+    public static function range(start:Float, length:Float, callback:RangeEvent->Void):RangeEvent
+    {
+        return globalManager.range(start, length, callback);
     }
 }
 
