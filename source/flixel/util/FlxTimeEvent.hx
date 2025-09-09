@@ -57,6 +57,9 @@ class FlxTimeEvent implements IFlxDestroyable
     }
 
     /**
+     * ```haxe
+     * FlxTimeEvent.range(10000, 5000, (_) -> obj.x += 10);
+     * ```
      * Crea y añade un RangeEvent al manager global.
      * Este evento se dispara siempre que el tiempo esté dentro del rango establecido.
      * @param start Indica el tiempo inicial.
