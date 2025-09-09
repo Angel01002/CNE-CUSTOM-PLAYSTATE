@@ -104,6 +104,13 @@ class FlxTimeEvent implements IFlxDestroyable
     }
 }
 
+typedef TweenEventOptions = {
+    @:optional var ease:Float->Float;
+    @:optional var onStart:TweenEvent->Void;
+    @:optional var onUpdate:TweenEvent->Void;
+    @:optional var onComplete:TweenEvent->Void;
+};
+
 
 class FlxTimeEventManager extends FlxBasic
 {
