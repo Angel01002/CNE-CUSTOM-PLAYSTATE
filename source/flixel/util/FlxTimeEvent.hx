@@ -140,6 +140,7 @@ class FlxTimeEvent implements IFlxDestroyable
      *   3.- 40000
      *   4.- 42000
      *   5.- 44000
+     * ----------------------
      * Crea y añade un `ShiftIntervalLoopEvent` al manager global.
      * Este evento se ejecuta en cada intervalo según el valor `loops`,
      * una vez terminado espera `GlobalInterval` para ejecutar el mismo patrón de intervalo,
