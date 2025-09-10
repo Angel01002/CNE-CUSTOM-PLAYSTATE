@@ -42,13 +42,13 @@
                     FlxG.camera.flash(FlxColor.RED, 2.0, null, true);
                 });
                 
-                FlxTimeEvent.globalManager.addChild(new FlxTimeEventManager(), 50, 'child:1');
-                FlxTimeEvent.globalManager.addChild(new FlxTimeEventManager(), 25, 'child:2');
+                FlxTimeEvent.globalManager.addChild(new FlxTimeEventManager(() -> Conductor.curStepFloat), 50, 'child:1:step:float');
+                FlxTimeEvent.globalManager.addChild(new FlxTimeEventManager(() -> Conductor.curBeatFloat), 25, 'child:2:beat:float');
                 if (this.curSongLower != "tutorial")
                 {
                     FlxTimeEvent.globalManager.active = false;
-                    FlxTimeEvent.globalManager.removeChild(FlxTimeEvent.globalManager.getChild('child:1'));
-                    FlxTimeEvent.globalManager.removeChild(FlxTimeEvent.globalManager.getChild('child:2'));
+                    FlxTimeEvent.globalManager.removeChild(FlxTimeEvent.globalManager.getChild('child:1:step:float'));
+                    FlxTimeEvent.globalManager.removeChild(FlxTimeEvent.globalManager.getChild('child:2:beat:float'));
                 }
                 else
                 {
