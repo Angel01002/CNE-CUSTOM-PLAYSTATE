@@ -43,12 +43,12 @@
                 });
                 
                 FlxTimeEvent.globalManager.addChild('child:1`, new FlxTimeEventManager());
-FlxTimeEvent.globalManager.addChildAt('child:2, 0, new FlxTimeEventManager());
+                FlxTimeEvent.globalManager.addChildAt('child:2', 0, new FlxTimeEventManager());
                 if (this.curSongLower != "tutorial")
                 {
                     FlxTimeEvent.globalManager.active = false;
-FlxTimeEvent.globalManager.getChild('child:1').active = false;
-FlxTimeEvent.globalManager.getChild('child:2').active = false;
+                FlxTimeEvent.globalManager.getChild('child:1').active = false;
+                FlxTimeEvent.globalManager.getChild('child:2').active = false;
                 }
                 else
                 {
