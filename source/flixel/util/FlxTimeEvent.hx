@@ -105,10 +105,41 @@ class FlxTimeEvent implements IFlxDestroyable
     
     /**
      * ```haxe
-     * FlxTimeEvent.shiftIntervalLoop(10000, 2000, 5, 5000, 10, (_) -> {
+     * FlxTimeEvent.shiftIntervalLoop(10000, 2000, 5, 5000, 3, (_) -> {
      *     sprite.animation.play('shoot', true);
      * });
      * ```
+     * Example:
+     * -StartTime = 10000
+     * -Interval = 2000
+     * -Loops = 5
+     * -GlobalInterval = 5000
+     * -GlobalLoops = 3
+     * ----------------------
+     * GlobalLoop: 1
+     *  start: 10000
+     *  loops:
+     *   1.- 10000
+     *   2.- 12000
+     *   3.- 14000
+     *   4.- 16000
+     *   5.- 18000
+     * GlobalLoop: 2
+     *  start: 18000 + 5000
+     *  loops:
+     *   1.- 23000
+     *   2.- 25000
+     *   3.- 27000
+     *   4.- 29000
+     *   5.- 31000
+     * GlobalLoop: 3
+     *  start: 31000 + 5000
+     *  loops:
+     *   1.- 36000
+     *   2.- 38000
+     *   3.- 40000
+     *   4.- 42000
+     *   5.- 44000
      * Crea y añade un `ShiftIntervalLoopEvent` al manager global.
      * Este evento se ejecuta en cada intervalo según el valor `loops`,
      * una vez terminado espera `GlobalInterval` para ejecutar el mismo patrón de intervalo,
@@ -116,7 +147,7 @@ class FlxTimeEvent implements IFlxDestroyable
      * @param StartTime Indica el inicio y primer llamado.
      * @param Interval Indica un tiempo de espera para llamar de nuevo.
      * @param Loops Indica cuantas veces llamar.
-     * @param GlobalInterval Indica después de cuanto tiempo ejecutar el patrón de intervalo.
+     * @param GlobalInterval Indica cuanto tiempo esperar desde el ultimo llamado para volver a ejecutar el patrón de intervalo.
      * @param GlobalLoops Indica cuantas veces repetir el patrón.
      * @param Callback Una función que se llama en cada Intervalo.
      * @return ShiftIntervalLoopEvent
