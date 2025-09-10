@@ -65,7 +65,8 @@ function loadSongEvent():Void
     FlxStepEvent = FlxTimeEvent.globalManager.getChild('child:1:step:float');
     FlxBeatEvent = FlxTimeEvent.globalManager.getChild('child:2:beat:float');
     
-    FlxStepEvent.multiple(change_song_step, (_) -> {
+    FlxStepEvent.multiple(change_song_step, function(_:MultipleEvent):Void
+    {
         switch(Math.round(_.time))
         {
             case 0:
