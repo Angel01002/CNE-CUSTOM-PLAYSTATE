@@ -16,6 +16,9 @@ var white_back:FunkinSprite;
 var black_fade:FunkinSprite;
 var topbars:FlxTopBars;
 
+var FlxStepEvent:FlxTimeEventManager;
+var FlxBeatEvent:FlxTimeEventManager;
+
 function loadSongEvent():Void
 {
     white_back = new FunkinSprite();
@@ -56,10 +59,13 @@ function loadSongEvent():Void
         1818, 1820, 1824, 2064
     ];
     
-    FlxTimeEvent.addChild(new FlxTimeEventManager(() -> Conductor.curStepFloat), 50, 'child:1:step:float');
-    FlxTimeEvent.addChild(new FlxTimeEventManager(() -> Conductor.curBeatFloat), 40, 'child:2:beat:float');
+    FlxTimeEvent.addChild(new FlxTimeEventManager((_) -> Conductor.curStepFloat), 50, 'child:1:step:float');
+    FlxTimeEvent.addChild(new FlxTimeEventManager((_) -> Conductor.curBeatFloat), 40, 'child:2:beat:float');
     
-    FlxTimeEvent.multiple(change_song_step, (_) -> {
+    FlxStepEvent = FlxTimeEvent.globalManager.getChild('child:1:step:float');
+    FlxBeatEvent = FlxTimeEvent.globalManager.getChild('child:2:beat:float');
+    
+    FlxStepEvent.multiple(change_song_step, (_) -> {
         switch(Math.round(_.time))
         {
             case 0:
