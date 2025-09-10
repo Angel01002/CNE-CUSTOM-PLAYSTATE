@@ -42,8 +42,8 @@
                     FlxG.camera.flash(FlxColor.RED, 2.0, null, true);
                 });
                 
-                FlxTimeEvent.globalManager.addChild('child:1', new FlxTimeEventManager());
-                FlxTimeEvent.globalManager.addChildAt('child:2', 0, new FlxTimeEventManager());
+                FlxTimeEvent.globalManager.addChild(new FlxTimeEventManager(), 50, 'child:1');
+                FlxTimeEvent.globalManager.addChild(new FlxTimeEventManager(), 25, 'child:2');
                 if (this.curSongLower != "tutorial")
                 {
                     FlxTimeEvent.globalManager.active = false;
