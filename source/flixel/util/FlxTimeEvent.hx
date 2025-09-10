@@ -91,7 +91,7 @@ class FlxTimeEvent implements IFlxDestroyable
      *     }
      * });
      * ```
-     * Crea y añade un TweenEvent al manager global.
+     * Crea y añade un `TweenEvent` al manager global.
      * Este evento es similar al `range()` pero sirve para crear una interpolacion en base al tiempo objetivo.
      * @param start Indica es tiempo de inicio.
      * @param length Indica la longitud del rango.
@@ -101,6 +101,27 @@ class FlxTimeEvent implements IFlxDestroyable
     public static function tween(start:Float, length:Float, options:TweenEventOptions):TweenEvent
     {
         return globalManager.tween(start, length, options);
+    }
+    
+    /**
+     * ```haxe
+     * FlxTimeEvent.shiftIntervalLoop(10000, 2000, 5, 5000, 10, (_) -> {
+     *     sprite.animation.play('shoot', true);
+     * });
+     * ```
+     * Crea y añade un `ShiftIntervalLoopEvent` al manager global.
+     * Este evento se ejecuta en cada intervalo según el valor `loops` una vez terminado espera `GlobalInterval` para ejecutar el mismo patrón de intervalo, esto se repite según el valor `GlobalLoops`.
+     * @param StartTime
+     * @param Interval 
+     * @param Loops 
+     * @param GlobalInterval 
+     * @param GlobalLoops 
+     * @param Callback 
+     * @return ShiftIntervalLoopEvent
+     */
+    public static function shiftIntervalLoop(StartTime:Float, Interval:Float, Loops:Int, GlobalInterval:Float, GlobalLoops:Int, Callback:ShiftIntervalLoopEvent->Void):ShiftIntervalLoopEvent
+    {
+        return globalManager.shiftIntervalLoop(StartTime, Interval, Loops, GlobalInterval,  GlobalLoop, Callback);
     }
 }
 
