@@ -47,8 +47,8 @@
                 if (this.curSongLower != "tutorial")
                 {
                     FlxTimeEvent.globalManager.active = false;
-                    FlxTimeEvent. globalManager.removeChild(FlxTimeEvent.globalManager.getChild('child:1'));
-                    FlxTimeEvent. globalManager.removeChild(FlxTimeEvent.globalManager.getChild('child:2'));
+                    FlxTimeEvent.globalManager.removeChild(FlxTimeEvent.globalManager.getChild('child:1'));
+                    FlxTimeEvent.globalManager.removeChild(FlxTimeEvent.globalManager.getChild('child:2'));
                 }
                 else
                 {
