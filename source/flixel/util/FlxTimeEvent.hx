@@ -110,13 +110,15 @@ class FlxTimeEvent implements IFlxDestroyable
      * });
      * ```
      * Crea y añade un `ShiftIntervalLoopEvent` al manager global.
-     * Este evento se ejecuta en cada intervalo según el valor `loops` una vez terminado espera `GlobalInterval` para ejecutar el mismo patrón de intervalo, esto se repite según el valor `GlobalLoops`.
-     * @param StartTime
-     * @param Interval 
-     * @param Loops 
-     * @param GlobalInterval 
-     * @param GlobalLoops 
-     * @param Callback 
+     * Este evento se ejecuta en cada intervalo según el valor `loops`,
+     * una vez terminado espera `GlobalInterval` para ejecutar el mismo patrón de intervalo,
+     * esto se repite según el valor `GlobalLoops`.
+     * @param StartTime Indica el inicio y primer llamado.
+     * @param Interval Indica un tiempo de espera para llamar de nuevo.
+     * @param Loops Indica cuantas veces llamar.
+     * @param GlobalInterval Indica después de cuanto tiempo ejecutar el patrón de intervalo.
+     * @param GlobalLoops Indica cuantas veces repetir el patrón.
+     * @param Callback Una función que se llama en cada Intervalo.
      * @return ShiftIntervalLoopEvent
      */
     public static function shiftIntervalLoop(StartTime:Float, Interval:Float, Loops:Int, GlobalInterval:Float, GlobalLoops:Int, Callback:ShiftIntervalLoopEvent->Void):ShiftIntervalLoopEvent
