@@ -51,7 +51,8 @@ function loadSongEvent():Void
     final change_song_step:Array<Float> = [1, 64, 122, 352, 416, 1198, 1456, 1472, 1984, 2192];
     FlxStepEvent.multiple(change_song_step, function(_:MultipleEvent):Void
     {
-        switch(Math.round(_.currentTime))
+        final currentTime:Int = Math.round(_.currentTime);
+        switch(currentTime)
         {
             case 1:
                 FlxG.camera.visible = true;
@@ -154,7 +155,7 @@ function loadSongEvent():Void
     {
         if (isCamStopPos) return;
         
-        var i:Int = this.events.length;
+        var i:Int = this.events.length - 1;
         var t:Int = this.curCameraTarget;
         while(i >= 0 && this.events[i].time <= Conductor.songPosition + Conductor.stepCrochet) {
             if (this.events[i].name == 'Camera Movement')
