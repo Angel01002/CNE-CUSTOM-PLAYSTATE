@@ -204,8 +204,8 @@ function destroy():Void {
 /**
  * Metodo para cambiar visualmente el largo real de la cancion.
  * @param StartValue Indica el tiempo del cual iniciar.
- * @param EndValue Indica el tiempo al cual llegar.
- * @param TimeValue Indica el tiempo para terminar.
+ * @param EndValue Indica el tiempo objetivo.
+ * @param TimeValue Indica la duracion de la interpolacion.
  * @param Ease Una suavidad opcional para la interpolacion.
  */
 function tweenSongLength(StartValue:Float, EndValue:Float, TimeValue:Float, ?Ease:Float->Float):Void
@@ -213,7 +213,7 @@ function tweenSongLength(StartValue:Float, EndValue:Float, TimeValue:Float, ?Eas
     FlxTween.cancelTweensOf(this, ['songLength']);
     this.songLength = StartValue;
     FlxTween.tween(this, {songLength: EndValue}, TimeValue, {
-        ease: ease,
+        ease: Ease,
         onComplete: (_) -> this.songLength = EndValue
     });
 }
