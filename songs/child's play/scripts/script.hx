@@ -135,7 +135,7 @@ function loadSongEvent():Void
                 result.add(' | ');
                 result.add('CamName: ' + camName);
                 rsultt.add(')');
-                trace('FlxStepEvent<(MultipleEvent)> flashing values: ' + value);
+                trace('FlxStepEvent<(MultipleEvent)> flashing values: ' + result.toString());
             }
             return;
         }
