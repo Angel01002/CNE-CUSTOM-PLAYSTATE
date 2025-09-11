@@ -95,7 +95,7 @@ function loadSongEvent():Void
             case 1472:
                 AppleFilterBlack(false);
             case 1984:
-                topbars.tween('middle', {vep: 0}, 2, 'middle', FlxEase.cubeOut);
+                topbars.tween('middle', {vep: 0}, 2, FlxEase.cubeOut);
             case 2192:
                 FlxTween.tween(FlxG.camera, {zoom: 1.4}, 6.63, {
                     ease: FlxEase.quadInOut,
